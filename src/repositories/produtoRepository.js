@@ -10,6 +10,14 @@ const getProdutosById = async (id)=>{
     const sql = 'SELECT * FROM produtos WHERE id = $1'
     const resultado = await pool.query(sql, [id]);
     return resultado.rows[0];
+
 }
 
-module.exports = { getAllProdutos, getProdutosById };
+const postProdutos = async (nome, preco, descricao)=>{
+    const sql = `INSERT INTO produtos (nome,preco, descricao) values
+    ('${nome}', '${preco}', '${descricao}');`
+    const resultado = await pool.query(sql);
+    return resultado.rows[0];
+}
+
+module.exports = { getAllProdutos, getProdutosById, postProdutos };
