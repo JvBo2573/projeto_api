@@ -12,10 +12,10 @@ const listarPessoas = async (req, res) => {
     }
 }
 
-const listarPessoasPorId = async (req, res)=>{
+const listarPessoasPorCpf = async (req, res)=>{
     try {
         const cpf = req.params.cpf;
-        const pessoas = await pessoasRepositorys.getPessoassById(cpf);
+        const pessoas = await pessoasRepositorys.getPessoassByCpf(cpf);
 
         if(!pessoas){
             return res.status(404).json({
@@ -23,9 +23,9 @@ const listarPessoasPorId = async (req, res)=>{
             });
         }
         res.json(pessoas);
-    } catch (error) {
+    }catch (error){
         res.status(500).json({
-            mensagem: `Erro interno ao buscar o cpf: ${cpf}`
+            mensagem: 'Erro interno ao buscar o cpf'
         });
     }
 }
@@ -49,4 +49,4 @@ const criarPessoas = async(req, res)=>{
 
 }
 
-module.exports = { listarPessoas, listarPessoasPorId,criarPessoas }
+module.exports = { listarPessoas, listarPessoasPorCpf, criarPessoas }

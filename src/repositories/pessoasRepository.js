@@ -6,7 +6,7 @@ const getAllPessoas = async () => {
     return resultado.rows;
 }
 
-const getPessoassById = async(cpf) => {
+const getPessoassByCpf = async(cpf) => {
     const sql = 'SELECT * FROM pessoas WHERE cpf = $1';
     const resultado = await pool.query(sql, [cpf]);
     return resultado.rows[0];
@@ -19,4 +19,4 @@ const postPessoas = async(nome, email, telefone, cpf, senha) => {
     return resultado.rows[0];
 }
 
-module.exports = { getAllPessoas, getPessoassById, postPessoas };
+module.exports = { getAllPessoas, getPessoassByCpf, postPessoas };
