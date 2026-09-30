@@ -3,7 +3,7 @@ const pessoasRepositorys = require('../repositories/pessoasRepository');
 const listarPessoas = async (req, res) => {
     try {
         const pessoas = await pessoasRepositorys.getAllPessoas();
-        res.json(pessoas);
+        res.json(pessoas);''
     } catch (error) {
         console.error(error.mensagem);
         res.status(500).json({
