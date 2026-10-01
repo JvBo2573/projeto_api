@@ -20,6 +20,7 @@ INSERT INTO produtos (nome, preco, descricao) VALUES
 ('Fonte 650W', 380.00, 'Fonte de alimentação com certificação 80 Plus Bronze.'),
 ('Webcam Full HD', 150.00, 'Webcam 1080p com microfone embutido para videoconferências.');
 
+
 DROP TABLE IF EXISTS pessoas;
 
 CREATE TABLE pessoas (
@@ -30,6 +31,8 @@ CREATE TABLE pessoas (
     cpf VARCHAR(14) UNIQUE NOT NULL,
     senha VARCHAR(100) NOT NULL
 );
+
+
 
 INSERT INTO pessoas (nome, email, telefone, cpf, senha) VALUES 
 ('João Silva', 'joao.silva@email.com', '(11) 98765-4321', '125.959.743-19', 'senha123'),
@@ -42,3 +45,68 @@ INSERT INTO pessoas (nome, email, telefone, cpf, senha) VALUES
 ('Juliana Castro', 'juliana.castro@email.com', '(61) 95555-3333', '607.765.965-78', 'ju2026'),
 ('Marcos Almeida', 'marcos.almeida@email.com', '(91) 94444-2222', '540.874.571-68', 'marcos!@#'),
 ('Patrícia Rocha', 'patricia.rocha@email.com', '(85) 93333-1111', '016.401.545-07', 'patiPass');
+
+
+DROP TABLE IF EXISTS pedidos;
+
+CREATE TABLE pedidos (
+    id SERIAL PRIMARY KEY,
+    pessoa_id INT NOT NULL,
+    produto_id INT NOT NULL,
+    quantidade INT NOT NULL,
+    data_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_pessoa FOREIGN KEY (pessoa_id) REFERENCES pessoas(id) ON DELETE CASCADE,
+    CONSTRAINT fk_produto FOREIGN KEY (produto_id) REFERENCES produtos(id) ON DELETE CASCADE
+);
+
+INSERT INTO pedidos (pessoa_id, produto_id, quantidade) VALUES 
+(1, 1, 2),
+(2, 3, 1),
+(3, 2, 4),
+(4, 5, 1),
+(5, 1, 3),
+(6, 4, 2),
+(7, 2, 1),
+(8, 3, 2),
+(9, 5, 1),
+(10, 1, 1),
+(1, 4, 2),
+(2, 2, 1),
+(3, 5, 3),
+(4, 1, 1),
+(5, 3, 2),
+(6, 2, 1),
+(7, 4, 1),
+(8, 1, 5),
+(9, 3, 2),
+(10, 5, 1),
+(1, 2, 1),
+(2, 4, 2),
+(3, 1, 1),
+(4, 3, 3),
+(5, 5, 1),
+(6, 1, 2),
+(7, 3, 1),
+(8, 5, 2),
+(9, 2, 1),
+(10, 4, 1),
+(1, 5, 2),
+(2, 1, 1),
+(3, 4, 2),
+(4, 2, 1),
+(5, 3, 1),
+(6, 5, 4),
+(7, 1, 1),
+(8, 4, 2),
+(9, 3, 1),
+(10, 2, 3),
+(1, 3, 1),
+(2, 5, 2),
+(3, 2, 1),
+(4, 4, 1),
+(5, 1, 2),
+(6, 3, 1),
+(7, 5, 2),
+(8, 2, 1),
+(9, 4, 3),
+(10, 3, 1);
